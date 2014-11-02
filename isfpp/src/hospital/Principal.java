@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Principal {
 	/* *
 	 * @param args
-	 * @throws F i l e N o t F o u n d E x c e p t i o n
+	 * @throws FileNotFoundException
 	 */
 	public static class Usuario {
 		public Usuario(){};
@@ -21,7 +21,7 @@ public class Principal {
 		
 	}
 	public static class Aleatorio{
-		private double real;
+		//private double real;
 		
 		public Aleatorio(){};
 		public static double real(double d1,double d2){
@@ -34,8 +34,8 @@ public class Principal {
 		}
 	}
 	public static void main ( String [] args ) throws FileNotFoundException{
-		int noTrauma = Usuario.entero ( " Ingrese el numero de doctores no t r a u m a t o l o g o s: " );
-		int trauma = Usuario.entero ( " Ingrese el numero de t r a u m a t o l o g o s: " );
+		int noTrauma = Usuario.entero ( " Ingrese el numero de doctores no traumatologos: " );
+		int trauma = Usuario.entero ( " Ingrese el numero de traumatologos: " );
 		Simulacion sim = new Simulacion( noTrauma , trauma );
 		sim.cargarArchivo( "urgencia.txt " );
 		sim.simular (6 , 0 , 18 , 0);
