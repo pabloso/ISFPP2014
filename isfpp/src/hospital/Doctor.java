@@ -1,5 +1,6 @@
 package hospital;
 
+//mostro de la laguna
 public class Doctor {
 	private int tipo ; // 0: F , 1: NF
 	private int tAtencion;
