@@ -9,6 +9,7 @@ public class Doctor {
 		tipo = _tipo ;
 	}
 	public void atender ( int _tAtencion , int _tLibre ) {
+		//a teder la ropa
 		tAtencion = _tAtencion;
 		tLibre = _tLibre ;
 	}
