@@ -48,7 +48,7 @@ public class Principal {
 		Simulacion sim = new Simulacion(noTrauma, trauma);
 		try {
 			//sim.cargarArchivo("urgencia.txt");
-			sim.cargarArchivo("/home/deimon/Programacion/Java/ISFPP/src/hospital/urgencia.txt");
+			sim.cargarArchivo("/home/deimon/Programacion/Java/ISFPP/src/hospital/urgencias.txt");
 			sim.simular(6, 0, 18, 0);
 		} catch (FileNotFoundException e) {
 			System.out.println("Error al abrir el archivo");
