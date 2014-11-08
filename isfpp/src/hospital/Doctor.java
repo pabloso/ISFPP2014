@@ -1,7 +1,7 @@
 package hospital;
 
 public class Doctor {
-	private int tipo; // 0: F , 1: NF
+	private int tipo; // 0: F mn, 1: NF
 	private int tAtencion;
 	private int tLibre;
 

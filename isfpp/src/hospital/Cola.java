@@ -1,27 +1,31 @@
 package hospital;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Cola {
-	private Paciente[][] pacientes;
+	private List<Paciente>[] pacientes;
 	private int[] numPacientes;
 	private int[] posActualCola;
 	private int[] posPrimeroCola;
 
 	public Cola() {
-		pacientes = new Paciente[3][1000];
+		for(int i=0; i < 3;i++)
+			pacientes[i] = new ArrayList<Paciente>();
 		numPacientes = new int[3];
 		posActualCola = new int[3];
 		posPrimeroCola = new int[3];
 	}
 
-	public Paciente[] getPacientes(int tipo) {
+	public List<Paciente> getPacientes(int tipo) {
 		return pacientes[tipo];
 	}
 
 	public boolean agregarPaciente(Paciente paciente) {
-		if (posActualCola[paciente.getTipoServicio()] >= pacientes[paciente.getTipoServicio()].length) {
+		if (posActualCola[paciente.getTipoServicio()] >= pacientes[paciente.getTipoServicio()].size()) {
 			return false;
 		}
-		pacientes[paciente.getTipoServicio()][posActualCola[paciente.getTipoServicio()]] = paciente;
+		pacientes[paciente.getTipoServicio()].get(posActualCola[paciente.getTipoServicio()]) = paciente;
 		posActualCola[paciente.getTipoServicio()]++;
 		numPacientes[paciente.getTipoServicio()]++;
 		return true;

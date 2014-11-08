@@ -45,10 +45,11 @@ public class Principal {
 	public static void main(String[] args) throws FileNotFoundException {
 		int noTrauma = Usuario.entero("Ingrese el numero de doctores no traumatologos: ");
 		int trauma = Usuario.entero("Ingrese el numero de traumatologos: ");
-		Simulacion sim = new Simulacion(noTrauma, trauma);
+		//Simulacion sim = new Simulacion(noTrauma, trauma);
+		Simulacion sim = new Simulacion(trauma);
 		try {
 			//sim.cargarArchivo("urgencia.txt");
-			sim.cargarArchivo("/home/deimon/Programacion/Java/ISFPP/src/hospital/urgencias.txt");
+			sim.cargarArchivo("urgencias.txt");
 			sim.simular(6, 0, 18, 0);
 		} catch (FileNotFoundException e) {
 			System.out.println("Error al abrir el archivo");
