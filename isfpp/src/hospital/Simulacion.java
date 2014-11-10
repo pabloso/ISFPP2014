@@ -11,9 +11,13 @@ import java.util.Scanner;
 
 public class Simulacion {
 	private Cola colaPacientes;
-//	private Cola colaPacientes;
+
 	private List<Doctor> doctores;
 	private List<PeriodoDia>  periodos;
+	
+	private int tiempoTotalDeEspera;
+	private int numPacientesAtendidos;
+	private int numPacientesMuertos;
 	private int numPeriodos;
 	
 	public Simulacion(int docs) {//, int numAnalogos) {

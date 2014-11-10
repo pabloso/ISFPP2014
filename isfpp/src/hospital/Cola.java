@@ -2,37 +2,61 @@ package hospital;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
-public class Cola {
-	private List<Paciente>[] pacientes;
+import javax.crypto.spec.OAEPParameterSpec;
+
+public class Cola extends PriorityQueue<Paciente>{
+	private final int tipos = 3;
+	public Cola() {
+		super();
+	}
+
+	/*private  PriorityQueue<Paciente> pacientes;
 	private int[] numPacientes;
 	private int[] posActualCola;
 	private int[] posPrimeroCola;
 
 	public Cola() {
-		for(int i=0; i < 3;i++)
-			pacientes[i] = new ArrayList<Paciente>();
+		pacientes = new PriorityQueue<Paciente>();
 		numPacientes = new int[3];
 		posActualCola = new int[3];
 		posPrimeroCola = new int[3];
 	}
-
-	public List<Paciente> getPacientes(int tipo) {
-		return pacientes[tipo];
+*/
+	public PriorityQueue<Paciente> getPacientes(int tipo) {
+		PriorityQueue<Paciente> p = new PriorityQueue<Paciente>();
+		for (Paciente pc: this){
+			if(pc.getTipoServicio() == tipo)
+				p.offer(pc);
+		}
+		return p;
 	}
 
 	public boolean agregarPaciente(Paciente paciente) {
-		if (posActualCola[paciente.getTipoServicio()] >= pacientes[paciente.getTipoServicio()].size()) {
+		this.offer(paciente);
+		return true;
+	}
+	public Paciente sacarPaciente() {
+		return this.poll();
+	}
+		/*	if (posActualCola[paciente.getTipoServicio()] >= pacientes[paciente.getTipoServicio()].size()) {
 			return false;
 		}
 		pacientes[paciente.getTipoServicio()].get(posActualCola[paciente.getTipoServicio()]) = paciente;
+		
+		if(pacientes.isEmpty())
+			return false;
+		if(pacientes.contains(paciente))
+			return false;
+		pacientes.offer(paciente);
 		posActualCola[paciente.getTipoServicio()]++;
 		numPacientes[paciente.getTipoServicio()]++;
 		return true;
 	}
 
 	public Paciente sacarPaciente() {
-		for (int i = 0; i < 3; i++) {
+		for (Paciente p >this) {
 			if (hayPacientesTipo(i)) {
 				return sacarPacienteTipo(i);
 			}
@@ -49,38 +73,42 @@ public class Cola {
 		numPacientes[tipo]--;
 		return sacado;
 	}
-
+*/
+	public Paciente sacarPacienteTipo(int tipo) {
+		Paciente ptipo;
+		
+		for(Paciente p:this)
+			if (p.getTipoServicio() == tipo){
+				ptipo =	new Paciente(p.getTLlegada(),p.getTipoServicio());
+				this.remove(p);
+				return ptipo;
+			}
+		return null;
+	}
+	
 	public boolean hayPacientes() {
-		return hayPacientesTipo(0) || hayPacientesTipo(1) || hayPacientesTipo(2);
+		return !this.isEmpty();
 	}
 
 	public boolean hayPacientesTipo(int tipo) {
-		return numPacientes[tipo] > 0;
+		for(Paciente p:this)
+			if (p.getTipoServicio() == tipo){
+				return true;
+			}
+		return false;
 	}
 
 	public int numPacientesEnCola() {
-		return numPacientesEnColaTipo(0) + numPacientesEnColaTipo(1) + numPacientesEnColaTipo(2);
+		return this.size();
 	}
 
 	public int numPacientesEnColaTipo(int tipo) {
-		return numPacientes[tipo];
-	}
-
-	public int numTotalPacientes() {
-		return numTotalPacientesTipo(0) + numTotalPacientesTipo(1) + numTotalPacientesTipo(2);
-	}
-
-	public int numTotalPacientesTipo(int tipo) {
-		return posActualCola[tipo];
-	}
-
-	public double esperaPromedio() {
-		double prom = 0;
-		for (int tipo = 0; tipo < 3; tipo++) {
-			for (int i = 0; i < posActualCola[tipo]; i++) {
-				prom += pacientes[tipo][i].getEspera();
-			}
+		int i=0;
+		for(Paciente p : this){
+			if( p.getTipoServicio() == tipo)
+				i++;
 		}
-		return prom;
+		return i;
 	}
+
 }

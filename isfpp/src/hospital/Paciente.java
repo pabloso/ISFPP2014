@@ -25,4 +25,9 @@ public class Paciente {
 	public int getEspera() {
 		return tAtencion - tLlegada;
 	}
+	public int compareTo(Paciente p1){
+		if(this.tipoServicio != p1.tipoServicio)
+			return this.tipoServicio - p1.tipoServicio;
+		return this.tLlegada - p1.tLlegada;
+	}
 }
