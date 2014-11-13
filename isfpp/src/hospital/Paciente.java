@@ -1,15 +1,19 @@
 package hospital;
 
-public class Paciente {
+public class Paciente implements Runnable{
 	private int tLlegada;
 	private int tAtencion;
 	private int tipoServicio; // Alta =0 , Media =1 , Baja =2
 
+	
 	public Paciente(int _tLlegada, int _tipoServicio) {
 		tLlegada = _tLlegada;
 		tipoServicio = _tipoServicio;
 	}
 
+	public void run(){
+	}
+	
 	public void esAtendido(int t) {
 		tAtencion = t;
 	}

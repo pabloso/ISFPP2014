@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 import javax.crypto.spec.OAEPParameterSpec;
 
-public class Cola extends PriorityQueue<Paciente>{
+public class Cola extends PriorityQueue<Paciente> implements Buffer {
 	private final int tipos = 3;
 	public Cola() {
 		super();

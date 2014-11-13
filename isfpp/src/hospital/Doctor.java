@@ -1,6 +1,6 @@
 package hospital;
 
-public class Doctor {
+public class Doctor implements Runnable{
 	private int tipo; // 0: F mn, 1: NF
 	private int tAtencion;
 	private int tLibre;
@@ -9,6 +9,9 @@ public class Doctor {
 		tipo = _tipo;
 	}
 
+	public void run(){
+		
+	}
 	public void atender(int _tAtencion, int _tLibre) {
 		tAtencion = _tAtencion;
 		tLibre = _tLibre;

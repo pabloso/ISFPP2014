@@ -127,8 +127,13 @@ public class Simulacion {
 			Usuario.mensajeConsola("Numero pacientes traumatologicos: " + periodos.get(i).getPacientesTrauma());
 			Usuario.mensajeConsola("-------------------");
 		}
-		Usuario.mensajeConsola("Tiempo espera promedio pacientes no traumatologicos: " + colaPacientes.esperaPromedio());
-		Usuario.mensajeConsola("Tiempo espera promedio pacientes traumatologicos: " + colaPacientes.esperaPromedio());
+		/*
+		 * Cada paciente debe ser un hilo y al finalizar debe incrementar 
+		 * tiempo de espera,numPacientesAtendidos, tipo
+		 * Si un paciente muere, tiempo de espera es desde su llegada hasta su muerte.
+		 * 
+		 * */
+		Usuario.mensajeConsola("Tiempo espera promedio: " + colaPacientes.esperaPromedio());
 		int numDigitales = colaPacientes.numTotalPacientes();
 		int numAnalogos = colaPacientes.numTotalPacientes();
 		double percDigitales = (double) numDigitales / (double) (numDigitales + numAnalogos);
@@ -150,3 +155,23 @@ public class Simulacion {
 		return null;
 	}
 }
+/*
+public int numTotalPacientes() {
+	return this.size();
+}
+
+public int numTotalPacientesTipo(int tipo) {
+	return posActualCola[tipo];
+}
+
+public double esperaPromedio() {
+	double prom = 0;
+	for (int tipo = 0; tipo < tipos; tipo++) {
+		
+		for (int i = 0; i < posActualCola[tipo]; i++) {
+			prom += pacientes[tipo][i].getEspera();
+		}
+	}
+	return prom;
+}
+*/

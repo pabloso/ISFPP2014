@@ -57,23 +57,4 @@ public class Principal {
 		}
 	}
 }
-/*
-public int numTotalPacientes() {
-	return this.size();
-}
 
-public int numTotalPacientesTipo(int tipo) {
-	return posActualCola[tipo];
-}
-
-public double esperaPromedio() {
-	double prom = 0;
-	for (int tipo = 0; tipo < tipos; tipo++) {
-		
-		for (int i = 0; i < posActualCola[tipo]; i++) {
-			prom += pacientes[tipo][i].getEspera();
-		}
-	}
-	return prom;
-}
-*/
