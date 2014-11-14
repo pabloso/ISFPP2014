@@ -11,9 +11,11 @@ public class Principal {
 	 */
 	public static class Usuario {
 
+		private static Scanner ent;
+
 		public static int entero(String s) {
 			System.out.println(s);
-			Scanner ent = new Scanner(System.in);
+			ent = new Scanner(System.in);
 			return ent.nextInt();
 		}
 

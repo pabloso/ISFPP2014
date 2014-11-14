@@ -1,0 +1,10 @@
+tree e65080ceffb8b3b61905e6e06527b922cb1f8abb
+parent 0844b4b3a2303ae3b66de3f8b411eb3130ee4fc6
+author Pablo <pan2fla@pantufla> 1415593377 -0300
+committer Pablo <pan2fla@pantufla> 1415593377 -0300
+
+Cola extiende de cola con prioridad para mantener algunos nombres.
+Se mueven algunos metodos a simulacion porque no tienen que ver con la
+cola en si, sino con la cantidad de pacientes atendidos. en la
+simulacion falta contar los datos estadisticos, pacientes muertos,
+atendidos espera promedio etc.
