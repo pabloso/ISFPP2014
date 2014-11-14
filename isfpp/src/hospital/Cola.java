@@ -7,27 +7,19 @@ import java.util.PriorityQueue;
 import javax.crypto.spec.OAEPParameterSpec;
 
 public class Cola extends PriorityQueue<Paciente> implements Buffer {
-	private final int tipos = 3;
+	private final int tipos;
+	private int cantidadTotalPacientes;
+
 	public Cola() {
 		super();
+		tipos = 3;
+		cantidadTotalPacientes = 0;
 	}
 
-	/*private  PriorityQueue<Paciente> pacientes;
-	private int[] numPacientes;
-	private int[] posActualCola;
-	private int[] posPrimeroCola;
-
-	public Cola() {
-		pacientes = new PriorityQueue<Paciente>();
-		numPacientes = new int[3];
-		posActualCola = new int[3];
-		posPrimeroCola = new int[3];
-	}
-*/
 	public PriorityQueue<Paciente> getPacientes(int tipo) {
 		PriorityQueue<Paciente> p = new PriorityQueue<Paciente>();
-		for (Paciente pc: this){
-			if(pc.getTipoServicio() == tipo)
+		for (Paciente pc : this) {
+			if (pc.getTipoServicio() == tipo)
 				p.offer(pc);
 		}
 		return p;
@@ -37,78 +29,85 @@ public class Cola extends PriorityQueue<Paciente> implements Buffer {
 		this.offer(paciente);
 		return true;
 	}
+
 	public Paciente sacarPaciente() {
 		return this.poll();
 	}
-		/*	if (posActualCola[paciente.getTipoServicio()] >= pacientes[paciente.getTipoServicio()].size()) {
-			return false;
-		}
-		pacientes[paciente.getTipoServicio()].get(posActualCola[paciente.getTipoServicio()]) = paciente;
-		
-		if(pacientes.isEmpty())
-			return false;
-		if(pacientes.contains(paciente))
-			return false;
-		pacientes.offer(paciente);
-		posActualCola[paciente.getTipoServicio()]++;
-		numPacientes[paciente.getTipoServicio()]++;
-		return true;
-	}
 
-	public Paciente sacarPaciente() {
-		for (Paciente p >this) {
-			if (hayPacientesTipo(i)) {
-				return sacarPacienteTipo(i);
-			}
-		}
-		return null;
-	}
-
-	public Paciente sacarPacienteTipo(int tipo) {
-		if (posPrimeroCola[tipo] >= posActualCola[tipo]) {
-			return null;
-		}
-		Paciente sacado = pacientes[tipo][posPrimeroCola[tipo]];
-		posPrimeroCola[tipo]++;
-		numPacientes[tipo]--;
-		return sacado;
-	}
-*/
-	public Paciente sacarPacienteTipo(int tipo) {
+	/*public Paciente sacarPacienteTipo(int tipo) {
 		Paciente ptipo;
-		
-		for(Paciente p:this)
-			if (p.getTipoServicio() == tipo){
-				ptipo =	new Paciente(p.getTLlegada(),p.getTipoServicio());
+
+		for (Paciente p : this)
+			if (p.getTipoServicio() == tipo) {
+				ptipo = new Paciente(p.getTLlegada(), p.getTipoServicio());
 				this.remove(p);
 				return ptipo;
 			}
 		return null;
-	}
-	
+	}*/
+
 	public boolean hayPacientes() {
 		return !this.isEmpty();
 	}
 
-	public boolean hayPacientesTipo(int tipo) {
-		for(Paciente p:this)
-			if (p.getTipoServicio() == tipo){
+	/*public boolean hayPacientesTipo(int tipo) {
+		for (Paciente p : this)
+			if (p.getTipoServicio() == tipo) {
 				return true;
 			}
 		return false;
-	}
+	}*/
 
 	public int numPacientesEnCola() {
 		return this.size();
 	}
 
-	public int numPacientesEnColaTipo(int tipo) {
-		int i=0;
-		for(Paciente p : this){
-			if( p.getTipoServicio() == tipo)
+	/*public int numPacientesEnColaTipo(int tipo) {
+		int i = 0;
+		for (Paciente p : this) {
+			if (p.getTipoServicio() == tipo)
 				i++;
 		}
 		return i;
+	}*/
+
+	public synchronized void set(Paciente paciente) throws InterruptedException {
+		this.add(paciente);
+		System.out.println("Llega " + paciente);
+		notifyAll();
+	}
+
+	public synchronized Paciente get(Doctor doctor) throws InterruptedException {
+		Paciente paciente = null;
+
+		while (this.isEmpty() && doctor.isAtiende()) {
+			System.out.println("Doctor " + doctor.getNombre()
+					+ " espera Pacientes");
+			wait();
+		}
+
+		if (!this.isEmpty())
+			paciente = this.poll();
+
+		notifyAll();
+
+		return paciente;
+	}
+
+	public int numTotalPacientes() {
+		//return this.size();
+		return this.cantidadTotalPacientes;
+	}
+
+	public double esperaPromedio(/*recibe un hora*/) {
+		double prom = 0;
+	/*
+	 *Cuando un paciente es atendido avisa cuanto demor[o en la cola
+	 *incrementa la cantidad de pacientes atendidos
+	 * suma el tiempo
+	 * sumas de las demoras / cantidad de pacientes
+	 * */
+		return prom;
 	}
 
 }

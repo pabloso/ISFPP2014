@@ -1,19 +1,16 @@
 package hospital;
 
-public class Paciente implements Runnable{
+public class Paciente{
 	private int tLlegada;
 	private int tAtencion;
-	private int tipoServicio; // Alta =0 , Media =1 , Baja =2
+	private int tipoPrioridad; // Alta =0 , Media =1 , Baja =2
 
 	
-	public Paciente(int _tLlegada, int _tipoServicio) {
+	public Paciente(int _tLlegada, int _tipoPrioridad) {
 		tLlegada = _tLlegada;
-		tipoServicio = _tipoServicio;
+		tipoPrioridad = _tipoPrioridad;
 	}
 
-	public void run(){
-	}
-	
 	public void esAtendido(int t) {
 		tAtencion = t;
 	}
@@ -23,15 +20,15 @@ public class Paciente implements Runnable{
 	}
 
 	public int getTipoServicio() {
-		return tipoServicio;
+		return tipoPrioridad;
 	}
 
 	public int getEspera() {
 		return tAtencion - tLlegada;
 	}
 	public int compareTo(Paciente p1){
-		if(this.tipoServicio != p1.tipoServicio)
-			return this.tipoServicio - p1.tipoServicio;
+		if(this.tipoPrioridad != p1.tipoPrioridad)
+			return this.tipoPrioridad - p1.tipoPrioridad;
 		return this.tLlegada - p1.tLlegada;
 	}
 }

@@ -46,14 +46,14 @@ public class PeriodoDia {
 		return probs;
 	}
 
-	public void agregarPacientesTipo(int tipo) {
+	/*public void agregarPacientesTipo(int tipo) {
 		numPacientesTipo[tipo]++;
 		numPacientes++;
 	}
 
-	public void agregarPacientesTrauma() {
+	/*public void agregarPacientesTrauma() {
 		numPacientesTrauma++;
-	}
+	}*/
 
 	public int getTotalPacientes() {
 		return numPacientes;
@@ -63,7 +63,7 @@ public class PeriodoDia {
 		return numPacientesTipo[tipo];
 	}
 
-	public int getPacientesTrauma() {
+	/*public int getPacientesTrauma() {
 		return numPacientesTrauma;
-	}
+	}*/
 }

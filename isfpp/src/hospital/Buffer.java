@@ -5,7 +5,6 @@ public interface Buffer
 
    public Paciente get(Doctor doctor) throws InterruptedException; 
    
-   public void finAtencion(Doctor doctor) throws InterruptedException;
 } 
 
 

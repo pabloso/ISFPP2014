@@ -1,48 +1,60 @@
 package hospital;
 
-public class Doctor implements Runnable{
-	private int tipo; // 0: F mn, 1: NF
-	private int tAtencion;
-	private int tLibre;
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-	public Doctor(int _tipo) {
-		tipo = _tipo;
+public class Doctor implements Runnable {
+	private final static Random generator = new Random();
+	private final Buffer sharedLocation;
+	private String nombre;
+//	private ExecutorService application;
+	private boolean atiende;
+	private long tiempoFin;
+	private long tiempoAtencion;
+	
+	public Doctor(String nombre, Buffer shared) {
+		sharedLocation = shared;
+		this.nombre = nombre;
+	//	application = Executors.newCachedThreadPool();
+	//	application.execute( new Reloj(15000, this, shared) );
+		tiempoFin = System.currentTimeMillis() + 10000;
+		this.atiende = true;
 	}
 
-	public void run(){
+	public void run() {
+		Paciente paciente;
 		
-	}
-	public void atender(int _tAtencion, int _tLibre) {
-		tAtencion = _tAtencion;
-		tLibre = _tLibre;
+
+		while (System.currentTimeMillis() < tiempoFin) {
+			
+			try {
+				paciente = sharedLocation.get(this);
+				if (paciente != null) {
+					System.out.println("Doctor " + nombre + " Atiende "
+							+ paciente);
+					tiempoAtencion = System.currentTimeMillis() + generator.nextInt(3000);
+					Thread.sleep(3000);				
+					} 
+			} catch (InterruptedException exception) {
+				exception.printStackTrace();
+			}
+			
+		}
+
+		System.out.println("Doctor " + nombre + " termino atenci�n.");
+		//application.shutdown();
 	}
 
-	public boolean estaOcupado(int t) {
-		return t < tLibre;
+	public String getNombre() {
+		return nombre;
 	}
 
-	/****************/
-	public int getTipo() {
-		return tipo;
+	public boolean isAtiende() {
+		return atiende;
 	}
 
-	public void setTipo(int _tipo) {
-		this.tipo = _tipo;
-	}
+	
+	
 
-	public int getAtencion() {
-		return tAtencion;
-	}
-
-	public void setAtencion(int _tAtencion) {
-		this.tAtencion = _tAtencion;
-	}
-
-	public int gettLibre() {
-		return tLibre;
-	}
-
-	public void settLibre(int _tLibre) {
-		this.tLibre = _tLibre;
-	}
 }
