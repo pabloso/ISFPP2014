@@ -55,13 +55,13 @@ public class PeriodoDia {
 		numPacientesTrauma++;
 	}*/
 
-	public int getTotalPacientes() {
-		return numPacientes;
-	}
-
-	public int getPacientesTipo(int tipo) {
-		return numPacientesTipo[tipo];
-	}
+//	public int getTotalPacientes() {
+//		return numPacientes;
+//	}
+//
+//	public int getPacientesTipo(int tipo) {
+//		return numPacientesTipo[tipo];
+//	}
 
 	/*public int getPacientesTrauma() {
 		return numPacientesTrauma;
