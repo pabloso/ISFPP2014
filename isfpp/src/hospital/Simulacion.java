@@ -79,13 +79,13 @@ public class Simulacion {
 		while (tInicio < tFin|| colaPacientes.hayPacientes()) {
 			// Llegada de pacientes
 			System.out.println("entro t:"+tInicio);
-			//if (Aleatorio.real(0, 1) < 0.2 && t < tMax) {
-			if (tInicio < tFin) {
+			if (Aleatorio.real(0, 1) < 0.2 && tInicio < tFin) {
+			//if (tInicio < tFin) {
 				PeriodoDia p = buscarPeriodo(tInicio);
 				if (p == null) {
 					p = (periodos.get(periodos.size() - 1));
 				}
-				System.out.println("periodo: "+p);
+				//System.out.println("periodo: "+p);
 				double[] probsActuales = p.getProbs();
 				double prioridad = Aleatorio.real(0, 1) * 100;
 				if (prioridad < probsActuales[0]) {

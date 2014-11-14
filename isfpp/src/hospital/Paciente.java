@@ -1,6 +1,6 @@
 package hospital;
 
-public class Paciente{
+public class Paciente implements Comparable{
 	private int tLlegada;
 	private int tAtencion;
 	private int tipoPrioridad; // Alta =0 , Media =1 , Baja =2
@@ -26,9 +26,10 @@ public class Paciente{
 	public int getEspera() {
 		return tAtencion - tLlegada;
 	}
-	public int compareTo(Paciente p1){
-		if(this.tipoPrioridad != p1.tipoPrioridad)
-			return this.tipoPrioridad - p1.tipoPrioridad;
-		return this.tLlegada - p1.tLlegada;
+	@Override
+	public int compareTo(Object p1){
+		if(this.tipoPrioridad != ((Paciente) p1).getTipoServicio())
+			return this.tipoPrioridad - ((Paciente) p1).tipoPrioridad;
+		return this.tLlegada - ((Paciente) p1).tLlegada;
 	}
 }

@@ -27,7 +27,7 @@ public class Principal {
 		//private double real;
 		public static double real(double d1, double d2) {
 			Random dou = new Random();
-			return dou.nextDouble() % d2 - dou.nextDouble() % d1;
+			return (dou.nextDouble()) % (d2 - d1);
 		}
 
 		public static int entero(int d1, int d2) {
