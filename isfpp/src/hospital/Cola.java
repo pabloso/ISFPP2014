@@ -3,6 +3,12 @@ package hospital;
 import java.util.PriorityQueue;
 
 public class Cola extends PriorityQueue<Paciente> implements Buffer {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Cola() {
 		super();
 	}
